@@ -41,8 +41,4 @@ CREATE TABLE IF NOT EXISTS ExampleDataset (
     taxon      VARCHAR(150) NOT NULL DEFAULT 'Aves'
 );
 
-CREATE INDEX idx_session ON Runs(session_token);
-CREATE INDEX idx_run_seq ON Sequences(run_id);
-CREATE INDEX idx_run_res ON Results(run_id);
-
 SELECT 'Tables created successfully.' AS status;
