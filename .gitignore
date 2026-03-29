@@ -1,0 +1,7 @@
+results/*.fasta
+results/*.png
+results/*.txt
+results/*.aln
+results/*.nwk
+debug.txt
+test_shell.php
