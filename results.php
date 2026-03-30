@@ -3,6 +3,27 @@ session_start();
 require_once 'login.php';
 
 // ── Guard: must have a current run ───────────────────────────────
+// Allow loading a previous run from history via GET parameter
+if (isset($_GET['load_run'])) {
+    $load_id = intval($_GET['load_run']);
+    // Verify this run exists in the user's session history
+    $valid = false;
+    if (isset($_SESSION['run_history'])) {
+        foreach ($_SESSION['run_history'] as $h) {
+            if ($h['run_id'] === $load_id) {
+                $valid = true;
+                break;
+            }
+        }
+    }
+    if ($valid) {
+        $_SESSION['current_run_id'] = $load_id;
+    } else {
+        header('location: history.php');
+        exit;
+    }
+}
+
 if (!isset($_SESSION['current_run_id'])) {
     header('location: search.php');
     exit;
