@@ -180,8 +180,9 @@ $active_page = 'search';
         <div class="card" style="text-align:center;">
             <h2>structure links</h2>
             <p class="card-desc">
-                Retrieve AlphaFold predicted structure links
-                for each sequence in this dataset.
+                Retrieve 3D structure links for each sequence — AlphaFold
+                predicted structures via UniProt, with fallback to NCBI
+                protein pages where no structure is available.
             </p>
             <a href="run_structures.php?run_id=<?php echo $run_id; ?>"
                class="btn btn-outline">find structures</a>
