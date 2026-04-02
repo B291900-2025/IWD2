@@ -142,8 +142,16 @@ if ($output !== null && strpos(trim($output), 'SUCCESS:') === 0) {
     $stmt_fail = $pdo->prepare("UPDATE Runs SET status='failed' WHERE id=:id");
     $stmt_fail->execute([':id' => $run_id]);
 
-    $error_msg = htmlspecialchars(trim($output));
-    $_SESSION['search_error'] = "Sequence fetch failed: $error_msg. Please try again.";
+    $raw_error = trim($output);
+    // Strip the ERROR: prefix for display
+    $display_error = str_replace('ERROR:', '', $raw_error);
+    $display_error = htmlspecialchars($display_error);
+    $_SESSION['search_error'] = $display_error;
+
+    // Mark run as failed
+    $stmt_fail = $pdo->prepare("UPDATE Runs SET status='failed' WHERE id=:id");
+    $stmt_fail->execute([':id' => $run_id]);
+
     header('location: search.php');
     exit;
 }

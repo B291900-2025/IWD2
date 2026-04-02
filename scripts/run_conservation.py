@@ -83,6 +83,10 @@ try:
     aln_length = len(seq_list[0])
     n_seqs     = len(seq_list)
 
+    if n_seqs < 2:
+        print("ERROR:At least 2 sequences are required for conservation analysis.")
+        sys.exit(1)
+
     # ── 3. Calculate conservation per position ───────────────────
     # Conservation = fraction of sequences with the most common
     # non-gap character at each position

@@ -13,6 +13,7 @@ Prints:
 
 import sys
 import os
+import time
 from Bio import Entrez, SeqIO
 
 # ── arguments ────────────────────────────────────────────────────
@@ -49,18 +50,40 @@ try:
               f"Try a different search.")
         sys.exit(1)
 
-    fetch_handle = Entrez.efetch(
-        db="protein",
-        id=id_list,
-        rettype="fasta",
-        retmode="text"
-    )
-    records = list(SeqIO.parse(fetch_handle, "fasta"))
-    fetch_handle.close()
+    max_retries = 3
+    records     = []
+
+    for attempt in range(max_retries):
+        try:
+            fetch_handle = Entrez.efetch(
+                db="protein",
+                id=id_list,
+                rettype="fasta",
+                retmode="text"
+            )
+            records = list(SeqIO.parse(fetch_handle, "fasta"))
+            fetch_handle.close()
+            if len(records) > 0:
+                break
+        except Exception as e:
+            if attempt < max_retries - 1:
+                time.sleep(2)
+                continue
+            else:
+                print(f"ERROR:NCBI fetch failed after {max_retries} attempts: {str(e)}")
+                sys.exit(1)
 
     if len(records) == 0:
         print("ERROR:Sequences found but could not be retrieved. Please try again.")
         sys.exit(1)
+
+    # Need at least 2 sequences for alignment analysis
+    if len(records) < 2:
+        print(f"ERROR:Only {len(records)} sequence found for '{protein}' "
+              f"in '{taxon}'. At least 2 sequences are needed for alignment "
+              f"analysis. Try a broader taxonomic group.")
+        sys.exit(1)
+
 
     # ── write FASTA file ─────────────────────────────────────────
     # PHP will read this file and insert into the database via PDO

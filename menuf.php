@@ -17,3 +17,17 @@ function nav_link($href, $label, $active_page) {
     <?php nav_link('about.php',   'about',   $active_page); ?>
     <?php nav_link('credits.php', 'credits', $active_page); ?>
 </nav>
+
+<!-- Loading overlay — available on all pages -->
+<div class="loading-overlay" id="loading-overlay">
+    <div class="loading-box">
+        <h3 id="loading-title">Processing...</h3>
+        <p id="loading-message">Please wait while your request is processed.</p>
+        <div class="progress-bar-wrap">
+            <div class="progress-bar-fill" id="progress-bar-fill"></div>
+        </div>
+        <div class="progress-label" id="progress-label">0%</div>
+        <div class="loading-steps" id="loading-steps"></div>
+    </div>
+</div>
+<script src="loading.js"></script>

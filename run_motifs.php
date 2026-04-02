@@ -10,6 +10,7 @@ if (!isset($_GET['run_id'])) {
 
 $run_id = intval($_GET['run_id']);
 $pdo    = get_pdo();
+$results_dir = __DIR__ . '/results';
 
 // ── Fetch run details ────────────────────────────────────────────
 $stmt = $pdo->prepare("SELECT * FROM Runs WHERE id = :id");
@@ -17,6 +18,14 @@ $stmt->execute([':id' => $run_id]);
 $run  = $stmt->fetch();
 
 if (!$run) {
+    header('location: search.php');
+    exit;
+}
+
+// Check FASTA file exists before showing scan options
+$fasta_path = $results_dir . "/run_{$run_id}_sequences.fasta";
+if (!file_exists($fasta_path)) {
+    $_SESSION['search_error'] = "Sequence data not found for run $run_id. Please run a new search.";
     header('location: search.php');
     exit;
 }
@@ -76,7 +85,17 @@ $active_page = 'search';
                 alert('Please select how you would like results displayed.');
                 return false;
             }
-            return true;
+            showLoading(
+            'Scanning for motifs...',
+            'Running EMBOSS patmatmotifs against the PROSITE database. Time depends on number of sequences.',
+            [
+                'Preparing sequences',
+                'Running patmatmotifs',
+                'Parsing PROSITE output',
+                'Compiling results'
+            ]
+        );
+        return true;
         }
     </script>
 </head>

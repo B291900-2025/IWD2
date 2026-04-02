@@ -147,7 +147,7 @@ try:
                 else:
                     alphafold_page = None
 
-            except Exception:
+            except Exception as e:
                 alphafold_page = None
         else:
             alphafold_page = None

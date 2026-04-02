@@ -318,3 +318,283 @@ footer a {
 }
 
 footer a:hover { text-decoration: underline; }
+
+/* ── Mobile responsiveness ───────────────────────────────────────
+   Breakpoints:
+   - max-width 768px : tablets and large phones (landscape)
+   - max-width 480px : phones (portrait)
+────────────────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+
+    /* Navigation — stack brand above links, allow wrapping */
+    nav {
+        flex-wrap: wrap;
+        padding: 0 1rem;
+    }
+
+    nav .brand {
+        width: 100%;
+        padding: 0.75rem 0;
+        border-bottom: 1px solid rgba(124,111,205,0.15);
+    }
+
+    nav a {
+        padding: 0.6rem 0.7rem;
+        font-size: 0.82rem;
+    }
+
+    /* Page wrap — reduce horizontal padding */
+    .page-wrap {
+        padding: 0 1rem;
+        margin: 1.25rem auto;
+    }
+
+    /* Three-column grid — collapse to single column */
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    /* Four-column stats grid — collapse to two columns */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    /* Two-column arch grid on about page — collapse to single */
+    .arch-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Two-column structure body — collapse to single */
+    .structure-body {
+        grid-template-columns: 1fr;
+    }
+
+    /* Credit items — collapse two-column layout */
+    .credit-item {
+        grid-template-columns: 1fr;
+        gap: 0.25rem;
+    }
+
+    .credit-name {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 0.3rem;
+        margin-bottom: 0.1rem;
+    }
+
+    /* Glossary items — collapse to single column */
+    .glossary-item {
+        grid-template-columns: 1fr;
+        gap: 0.2rem;
+    }
+
+    .glossary-term {
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    /* About page flow table — make it scrollable on small screens */
+    .flow-table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Run card analyses badges — wrap nicely */
+    .run-analyses {
+        gap: 0.4rem;
+    }
+
+    /* Structure header — stack content */
+    .structure-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    /* Page header font size — slightly smaller */
+    .page-header h1 {
+        font-size: 1.3rem;
+    }
+
+    /* Card padding — slightly tighter */
+    .card {
+        padding: 1.1rem;
+    }
+
+    /* Audience box on help page — collapse to single column */
+    .audience-box {
+        grid-template-columns: 1fr;
+    }
+
+    /* Tree container — ensure it scrolls horizontally */
+    #tree_container,
+    #tree_container_ex {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Sequence aligned display — allow horizontal scroll */
+    .seq-aligned {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        font-size: 0.7rem;
+    }
+
+    /* Seq-id width — reduce on small screens */
+    .seq-id {
+        width: 120px;
+    }
+
+    /* Result plot images — full width */
+    .result-plot {
+        width: 100%;
+    }
+
+    /* Form groups — full width inputs already, just ensure spacing */
+    .form-group input[type="text"],
+    .form-group input[type="number"],
+    .form-group select {
+        font-size: 16px; /* prevents iOS auto-zoom on focus */
+    }
+
+    /* Buttons — full width on small screens */
+    .btn {
+        display: block;
+        width: 100%;
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Run body action buttons — stack vertically */
+    .run-body > div[style*="display:flex"] {
+        flex-direction: column;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    /* Stats grid — single column on very small screens */
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+
+    /* Nav links — smaller text */
+    nav a {
+        font-size: 0.78rem;
+        padding: 0.55rem 0.55rem;
+    }
+
+    /* Stat box value — slightly smaller */
+    .stat-box .stat-value {
+        font-size: 1.3rem;
+    }
+
+    /* Table font size — smaller to fit */
+    table {
+        font-size: 0.82rem;
+    }
+
+    th, td {
+        padding: 0.45rem 0.6rem;
+    }
+
+    /* Page header */
+    .page-header h1 {
+        font-size: 1.2rem;
+    }
+
+}
+
+/* ── Loading overlay ─────────────────────────────────────────────── */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(249,248,255,0.92);
+    z-index: 1000;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.loading-overlay.active {
+    display: flex;
+}
+
+.loading-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2rem 2.5rem;
+    box-shadow: 0 4px 24px rgba(124,111,205,0.15);
+    max-width: 400px;
+    width: 90%;
+}
+
+.loading-box h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--primary-dark);
+    margin-bottom: 0.5rem;
+}
+
+.loading-box p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+}
+
+.progress-bar-wrap {
+    background: var(--border);
+    border-radius: 20px;
+    height: 10px;
+    width: 100%;
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 10px;
+    border-radius: 20px;
+    background: var(--primary);
+    width: 0%;
+    transition: width 0.4s ease;
+}
+
+.progress-label {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: right;
+}
+
+.loading-steps {
+    margin-top: 1rem;
+    text-align: left;
+}
+
+.loading-step {
+    font-size: 0.82rem;
+    padding: 0.25rem 0;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-step.done { color: var(--success); }
+.loading-step.active { color: var(--primary-dark); font-weight: 700; }
+
+.step-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+    flex-shrink: 0;
+}
+
+.loading-step.done .step-dot { background: var(--success); }
+.loading-step.active .step-dot { background: var(--primary); }

@@ -1,5 +1,7 @@
 <?php
 session_start();
+// Clear current run so results page always shows the latest search
+unset($_SESSION['current_run_id']);
 $active_page = 'search';
 ?>
 <!DOCTYPE html>
@@ -52,7 +54,19 @@ $active_page = 'search';
                 alert('Maximum sequences must be a number between 5 and 200.');
                 return false;
             }
-            return true;
+            // Show loading overlay
+        showLoading(
+            'Fetching sequences...',
+            'Retrieving protein sequences from NCBI. This may take up to 30 seconds depending on the number of sequences requested.',
+            [
+                'Connecting to NCBI Entrez',
+                'Searching protein database',
+                'Fetching sequences in FASTA format',
+                'Storing sequences in database',
+                'Preparing results page'
+            ]
+        );
+        return true;
         }
     </script>
 </head>
@@ -67,21 +81,32 @@ $active_page = 'search';
         <p>Select a protein family and taxonomic group to retrieve and analyse sequences from NCBI</p>
     </div>
 
-    <?php
-    // Show any error message passed back from processing
-    if (isset($_SESSION['search_error'])) {
-        echo "<div class='alert alert-error'>" .
-             htmlspecialchars($_SESSION['search_error']) .
-             "</div>";
-        unset($_SESSION['search_error']);
-    }
-    ?>
-
+    <?php if (isset($_SESSION['search_error'])): ?>
+    <div class="alert alert-error">
+        <strong>Search failed:</strong>
+        <?php echo $_SESSION['search_error']; unset($_SESSION['search_error']); ?>
+        <br><br>
+        <strong>Suggestions:</strong>
+        <ul style="margin-top:0.4rem; margin-left:1.2rem;
+                   line-height:1.8; font-size:0.88rem;">
+            <li>Check the spelling of your protein family name</li>
+            <li>Try a broader taxonomic group
+                (e.g. "Vertebrata" instead of "Aves")</li>
+            <li>Try searching
+                <a href="https://www.ncbi.nlm.nih.gov/protein"
+                   target="_blank">NCBI Protein directly</a>
+                to verify your search terms return results</li>
+            <li>Reduce the maximum number of sequences
+                if the request timed out</li>
+        </ul>
+    </div>
+    <?php endif; ?>
+    
     <div class="card">
         <h2>search parameters</h2>
 
         <form action="process_search.php" method="post"
-              onsubmit="return validateForm()">
+	      onsubmit="return validateForm()">
 
             <!-- Protein family -->
             <div class="form-group">

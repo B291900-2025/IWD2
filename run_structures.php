@@ -25,6 +25,13 @@ $results_dir    = __DIR__ . '/results';
 $fasta_path     = $results_dir . "/run_{$run_id}_sequences.fasta";
 $structures_path = $results_dir . "/run_{$run_id}_structures.txt";
 
+// Check FASTA file exists before attempting structure lookup
+if (!file_exists($fasta_path)) {
+    $_SESSION['search_error'] = "Sequence data not found for run $run_id. Please run a new search.";
+    header('location: search.php');
+    exit;
+}
+
 $error_msg  = '';
 $structures = [];
 

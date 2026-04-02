@@ -175,7 +175,12 @@ $active_page = 'search';
                 a conservation profile plot across the alignment.
             </p>
             <a href="run_conservation.php?run_id=<?php echo $run_id; ?>"
-               class="btn btn-primary">run alignment</a>
+	       class="btn btn-primary"
+               onclick="showLoading(
+       'Running conservation analysis...',
+       'Aligning sequences with Clustal Omega and calculating conservation scores. This may take up to 60 seconds.',
+       ['Aligning sequences with Clustal Omega','Calculating per-position conservation','Generating conservation plot','Loading results']
+   )">run alignment</a>
         </div>
 
         <div class="card" style="text-align:center;">
@@ -185,7 +190,13 @@ $active_page = 'search';
                 patmatmotifs to identify known protein domains.
             </p>
             <a href="run_motifs.php?run_id=<?php echo $run_id; ?>"
-               class="btn btn-accent">scan motifs</a>
+	       class="btn btn-accent"
+               onclick="showLoading(
+       'Preparing motif scan...',
+       'Loading scan options for your sequences.',
+       ['Loading sequence data',
+        'Preparing scan interface']
+   )">scan motifs</a>
         </div>
 
         <div class="card" style="text-align:center;">
@@ -195,7 +206,15 @@ $active_page = 'search';
                 Newick output and visualise evolutionary relationships.
             </p>
             <a href="run_phylogeny.php?run_id=<?php echo $run_id; ?>"
-               class="btn btn-outline">build tree</a>
+	       class="btn btn-outline"
+               onclick="showLoading(
+       'Building phylogenetic tree...',
+       'Constructing guide tree with Clustal Omega and rendering interactive visualisation.',
+       ['Running Clustal Omega',
+       'Extracting Newick tree',
+       'Generating static image',
+       'Rendering interactive tree']
+   )">build tree</a>
         </div>
 
         <div class="card" style="text-align:center;">
@@ -206,7 +225,15 @@ $active_page = 'search';
                 protein pages where no structure is available.
             </p>
             <a href="run_structures.php?run_id=<?php echo $run_id; ?>"
-               class="btn btn-outline">find structures</a>
+	       class="btn btn-outline"
+               onclick="showLoading(
+       'Looking up structures...',
+       'Querying NCBI and AlphaFold API for each sequence. This may take 1\u20132 minutes.',
+       ['Fetching GenBank records',
+       'Looking up UniProt IDs',
+       'Querying AlphaFold API',
+       'Processing structure data']
+   )">find structures</a>
         </div>
 
     </div>

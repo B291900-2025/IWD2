@@ -23,6 +23,13 @@ if (!$run) {
 
 $results_dir = __DIR__ . '/results';
 $fasta_path  = $results_dir . "/run_{$run_id}_sequences.fasta";
+// Check FASTA file exists — if not, sequences were never fetched
+if (!file_exists($fasta_path)) {
+    $_SESSION['search_error'] = "Sequence data not found for this run.
+        Please run a new search.";
+    header('location: search.php');
+    exit;
+}
 $plot_path   = $results_dir . "/run_{$run_id}_conservation.png";
 $plot_url    = "results/run_{$run_id}_conservation.png";
 $aligned_path = $results_dir . "/run_{$run_id}_aligned.fasta";
