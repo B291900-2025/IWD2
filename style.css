@@ -393,7 +393,20 @@ footer a:hover { text-decoration: underline; }
         padding-bottom: 0;
     }
 
-    /* About page flow table — make it scrollable on small screens */
+    /* All tables scroll horizontally on mobile */
+    table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        white-space: nowrap;
+    }
+
+    /* But table cells can still wrap text */
+    td, th {
+        white-space: normal;
+        min-width: 80px;
+    }
+
     .flow-table {
         display: block;
         overflow-x: auto;
