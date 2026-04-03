@@ -8,9 +8,6 @@ automatically retrieves sequences from NCBI, runs multiple sequence
 alignment, conservation profiling, PROSITE motif scanning, phylogenetic
 tree construction, and AlphaFold structure lookup.
 
-Built as the assessed practical project for BILG11016 Introduction to
-Website and Database Design, University of Edinburgh (2025-26).
-
 ---
 
 ## Website
@@ -60,6 +57,8 @@ https://bioinfmsc8.bio.ed.ac.uk/~s2793337/Website/
 
 ## Database schema
 
+```
+
 s2793337_website
 ├── Runs            — one row per user search
 ├── Sequences       — fetched sequences linked to Runs
@@ -67,10 +66,12 @@ s2793337_website
 ├── ExampleDataset  — pre-loaded G6Pase/Aves sequences
 └── Feedback        — user feedback and contact messages
 
+```
 ---
 
 ## File structure
 
+```
 Website/
 ├── index.php               Landing page
 ├── search.php              Search form
@@ -105,11 +106,12 @@ Website/
 │   └── generate_example_sql.py SQL generator for example data
 └── results/                Generated output files (gitignored)
 
+```
 ---
 
 ## Setup
 
-This project runs on the University of Edinburgh bioinfmsc8 server.
+This project runs on The University of Edinburgh bioinfmsc8 server.
 All dependencies (Clustal Omega, EMBOSS, Python, MySQL, Apache) are
 pre-installed on that server.
 
@@ -120,23 +122,17 @@ git clone https://github.com/B291900-2025/IWD2.git
 cd IWD2
 
 # 2. Create the database tables
-mysql -u sYOURNUMBER -p < maketables.sql
+mysql -u s2793337 -p < maketables.sql
 
 # 3. Edit login.php with your MySQL credentials
 
 # 4. Set results folder permissions
 chmod 777 results/
 
-# 5. Add your NCBI credentials to the Python scripts
-#    Edit Entrez.email and Entrez.api_key in:
-#    scripts/fetch_sequences.py
-#    scripts/run_structures.py
-#    scripts/setup_example.py
-
-# 6. Run the example dataset setup
+# 5. Run the example dataset setup
 python3 scripts/setup_example.py
 python3 scripts/generate_example_sql.py
-mysql -u sYOURNUMBER -p sYOURNUMBER_website < scripts/populate_example.sql
+mysql -u s2793337 -p s2793337_website < scripts/populate_example.sql
 ```
 
 ---
