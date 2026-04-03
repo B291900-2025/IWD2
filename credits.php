@@ -71,7 +71,7 @@ $active_page = 'credits';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>credits &amp; AI usage statement</h1>
+        <h1>Credits &amp; AI Usage Statement</h1>
         <p>Full attribution for all code, tools, data sources and AI assistance
            used in building ProtExplorer</p>
     </div>

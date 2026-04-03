@@ -214,7 +214,7 @@ $active_page = 'example';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>example dataset</h1>
+        <h1>Example Dataset</h1>
         <p>Glucose-6-phosphatase in Aves &mdash; a pre-processed walkthrough</p>
     </div>
 
@@ -570,13 +570,12 @@ for ($c = 1; $c < count($chunks); $c++) {
                 <td><?php echo htmlspecialchars($m['start']); ?></td>
                 <td><?php echo htmlspecialchars($m['end']); ?></td>
                 <td><?php echo htmlspecialchars($m['length']); ?></td>
-                <td>
-                    <a href="https://prosite.expasy.org/<?php
-                        echo htmlspecialchars($m['motif']); ?>"
-                       target="_blank" class="ext-link">
-                        view on PROSITE
-                    </a>
-                </td>
+		<td>
+                            <a href="https://prosite.expasy.org/cgi-bin/prosite/prosite_search_full.pl?SEARCH=<?php echo urlencode($m['motif']); ?>"
+                               target="_blank" class="ext-link">
+                                search on PROSITE
+                            </a>
+                        </td>
             </tr>
             <?php endforeach; ?>
         </table>

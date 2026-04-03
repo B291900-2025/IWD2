@@ -151,7 +151,7 @@ $active_page = 'help';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>help</h1>
+        <h1>Help</h1>
         <p>How to use ProtExplorer &mdash; for users of all backgrounds</p>
     </div>
 
@@ -168,7 +168,7 @@ $active_page = 'help';
         </p>
         <div class="audience-box">
             <div class="audience-card">
-                <h4>biologist / life scientist</h4>
+                <h4>Biologist / Life Scientist</h4>
                 <p>
                     Focus on the
                     <a href="#what-it-does">what it does</a>,
@@ -179,7 +179,7 @@ $active_page = 'help';
                 </p>
             </div>
             <div class="audience-card">
-                <h4>bioinformatician</h4>
+                <h4>Bioinformatician</h4>
                 <p>
                     The
                     <a href="#analyses">analyses in detail</a>
@@ -190,7 +190,7 @@ $active_page = 'help';
                 </p>
             </div>
             <div class="audience-card">
-                <h4>non-specialist</h4>
+                <h4>Non-Specialist</h4>
                 <p>
                     Start with the
                     <a href="#what-is-protein">what is a protein?</a>

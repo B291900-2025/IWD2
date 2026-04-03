@@ -77,7 +77,7 @@ $active_page = 'search';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>search</h1>
+        <h1>Search</h1>
         <p>Select a protein family and taxonomic group to retrieve and analyse sequences from NCBI</p>
     </div>
 

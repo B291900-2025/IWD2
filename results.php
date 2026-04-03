@@ -122,7 +122,7 @@ $active_page = 'search';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>results</h1>
+        <h1>Results</h1>
         <p>
             <?php echo htmlspecialchars($run['protein_family']); ?>
             in <?php echo htmlspecialchars($run['taxon']); ?>

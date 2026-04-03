@@ -114,7 +114,7 @@ $active_page = 'history';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>run history</h1>
+        <h1>Run History</h1>
         <p>Searches you have run in this session</p>
     </div>
 

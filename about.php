@@ -101,7 +101,7 @@ $active_page = 'about';
 <div class="page-wrap">
 
     <div class="page-header" style="margin-top:2rem;">
-        <h1>about ProtExplorer</h1>
+        <h1>About ProtExplorer</h1>
         <p>Implementation overview for developers &mdash; no code examples</p>
     </div>
 

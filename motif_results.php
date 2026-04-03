@@ -108,9 +108,7 @@ $active_page = 'search';
             <tr><th>parameter</th><th>value</th></tr>
             <tr>
                 <td>sequences scanned</td>
-                <td>
-                    <?php echo count($grouped) + count($no_motif_seqs); ?>
-                </td>
+                <td><?php echo count($grouped) + count($no_motif_seqs); ?></td>
             </tr>
             <tr>
                 <td>sequences with motifs</td>
@@ -152,6 +150,7 @@ $active_page = 'search';
                     <th>start</th>
                     <th>end</th>
                     <th>length</th>
+                    <th>PROSITE</th>
                 </tr>
                 <?php foreach ($motif_data as $m): ?>
                 <tr>
@@ -162,7 +161,9 @@ $active_page = 'search';
                             <?php echo htmlspecialchars($m['accession']); ?>
                         </a>
                     </td>
-                    <td><em><?php echo htmlspecialchars($m['species']); ?></em></td>
+                    <td>
+                        <em><?php echo htmlspecialchars($m['species']); ?></em>
+                    </td>
                     <td>
                         <span class="motif-badge">
                             <?php echo htmlspecialchars($m['motif']); ?>
@@ -171,6 +172,10 @@ $active_page = 'search';
                     <td><?php echo htmlspecialchars($m['start']); ?></td>
                     <td><?php echo htmlspecialchars($m['end']); ?></td>
                     <td><?php echo htmlspecialchars($m['length']); ?></td>
+                    <td>
+                        <a href="https://prosite.expasy.org/cgi-bin/prosite/prosite_search_full.pl?SEARCH=<?php echo urlencode($m['motif']); ?>"
+                           target="_blank">search</a>
+                    </td>
                 </tr>
                 <?php endforeach; ?>
             </table>
@@ -202,6 +207,7 @@ $active_page = 'search';
                         <th>start</th>
                         <th>end</th>
                         <th>length</th>
+                        <th>PROSITE</th>
                     </tr>
                     <?php foreach ($motifs as $m): ?>
                     <tr>
@@ -213,6 +219,10 @@ $active_page = 'search';
                         <td><?php echo htmlspecialchars($m['start']); ?></td>
                         <td><?php echo htmlspecialchars($m['end']); ?></td>
                         <td><?php echo htmlspecialchars($m['length']); ?></td>
+                        <td>
+                            <a href="https://prosite.expasy.org/cgi-bin/prosite/prosite_search_full.pl?SEARCH=<?php echo urlencode($m['motif']); ?>"
+                               target="_blank">search</a>
+                        </td>
                     </tr>
                     <?php endforeach; ?>
                 </table>
@@ -248,13 +258,14 @@ $active_page = 'search';
     <!-- PROSITE info -->
     <div class="card">
         <h2>about PROSITE motifs</h2>
-        <p style="font-size:0.88rem;">
-            PROSITE is a database of protein families, domains and functional sites.
-            Motifs are described as patterns or profiles derived from known protein
-            families. The AMIDATION motif, for example, marks C-terminal amidation
-            sites — a post-translational modification that activates many signalling
-            peptides. You can look up any motif found here on the
-            <a href="https://prosite.expasy.org/" target="_blank">
+        <p style="font-size:0.88rem; line-height:1.75;">
+            PROSITE is a database of protein families, domains and
+            functional sites. Motifs are described as patterns or profiles
+            derived from known protein families. The AMIDATION motif, for
+            example, marks C-terminal amidation sites — a post-translational
+            modification that activates many signalling peptides. You can
+            look up any motif found here on the
+	    <a href="https://prosite.expasy.org/cgi-bin/prosite/prosite_search_full.pl?SEARCH=<?php echo urlencode($m['motif']); ?>" target="_blank">
                 PROSITE database
             </a>.
         </p>
